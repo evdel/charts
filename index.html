@@ -30,6 +30,14 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+    	.bar{
+    		background-color: CadetBlue;
+    		margin: 1px;
+    		text-align: right;
+    		padding:3px;
+    	}
+    </style>
   </head>
 
   <body>
@@ -84,11 +92,15 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1>
 
-
+          <div id="barChart">
+          </div>
 
         </div>
       </div>
     </div>
+    <script>
+    	document.getElementById("barChart").innerHTML = "Hello JavaScript";
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
