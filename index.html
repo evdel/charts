@@ -100,13 +100,13 @@
     </div>
     <script>
     	var data = [4, 8, 15, 16, 23, 42];
+    	var ratio = 10;
     	for(i=0; i<data.length; i++){
-    		var content = "" + data[i]
-    		addContent(content, "barChart")
-    	}
-    	function addContent(content, id){
-    		var previousContent = document.getElementById(id).innerHTML;
-    		document.getElementById(id).innerHTML = previousContent + content;
+    		var bar = document.createElement("div");
+    		bar.innerHTML = data[i];
+    		bar.style.width = ratio*data[i]+"px";
+    		bar.className = "bar";
+    		document.getElementById("barChart").appendChild(bar);
     	}
     </script>
 
