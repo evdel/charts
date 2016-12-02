@@ -99,7 +99,12 @@
       </div>
     </div>
     <script>
-    	document.getElementById("barChart").innerHTML = "Hello JavaScript";
+    	addContent("coucou", "barChart")
+    	addContent("<p>bisou</p>", "barChart")
+    	function addContent(content, id){
+    		var previousContent = document.getElementById(id).innerHTML;
+    		document.getElementById(id).innerHTML = previousContent + content;
+    	}
     </script>
 
     <!-- Bootstrap core JavaScript
