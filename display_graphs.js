@@ -50,19 +50,13 @@ g.append("rect")
 
 g.append("text");
  
-// Donut
+// Disque
 
-var vis = d3.select("#donutChart");
-
-var arc = d3.svg.arc()
-.innerRadius(50)
-.outerRadius(100)
-.startAngle(0)
-.endAngle(1.5*Math.PI);
-
-vis.append("path")
-.attr("d", arc)
-.attr("transform", "translate(30,20)");
-
-
-var radiusRatio = 2*math.PI / d3.max(data);
+d3.select("#disque")
+	.attr("width","300")
+	.attr("height", "200")
+	.append("circle")
+	.attr("cx", "40")
+	.attr("cy", "40")
+	.attr("r", "30")
+	.attr("fill", "green");
