@@ -32,26 +32,33 @@ bar.append("text")
 
 // Barres verticales
 
-var height = 200;
-var width = 300;
+var chartHeight = 200;
+var chartWidth = 300;
 
-var ratio = height / d3.max(data); 
-var deltaX = width / data.length;
+var deltaX = chartWidth / data.length;
+
+var x = d3.scaleLinear()
+	.domain([0, d3.max(data)])
+	.range([0, chartHeight]);
 
 var svg = d3.select("#verticalSvgBarChart")
-.attr("height",height);
+.attr("height",chartHeight)
+.attr("width", chartWidth);
 
 var g = svg.selectAll("g")
 	.data(data)
 	.enter().append("g")
-	.attr("transform", function(d, i){return "translate("+i*deltaX + ","+ratio*(d3.max(data)-d)+")";});
+	.attr("transform", function(d, i){return "translate("+i*deltaX + ","+x(d3.max(data)-d)+")";});
 
 g.append("rect")
 .attr("width", deltaX -1)
-.attr("height", function(d){return ratio*d;});
+.attr("height", function(d){return x(d);});
 
 g.append("text");
  
+// - Ajout axes
+
+
 // Disque
 
 d3.select("#disque")
