@@ -1,0 +1,16 @@
+.bar{
+	background-color: CadetBlue;
+	margin: 1px;
+	text-align: right;
+	padding:3px;
+}
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
