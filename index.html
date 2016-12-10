@@ -38,16 +38,15 @@
     		padding:3px;
     	}
 
+		.chart rect {
+		  fill: steelblue;
+		}
 
-.chart rect {
-  fill: steelblue;
-}
-
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
-}
+		.chart text {
+		  fill: white;
+		  font: 10px sans-serif;
+		  text-anchor: end;
+		}
 
 
     </style>
@@ -104,43 +103,55 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1>
-
+          <div class="row">
+          <div class="col-md-4">
+          en html avec D3
           <div id="barChart">
           </div>
+          </div>
 
-<svg class="chart" width="420" height="120">
-  <g transform="translate(0,0)">
-    <rect width="40" height="19"></rect>
-    <text x="37" y="9.5" dy=".35em">4</text>
-  </g>
-  <g transform="translate(0,20)">
-    <rect width="80" height="19"></rect>
-    <text x="77" y="9.5" dy=".35em">8</text>
-  </g>
-  <g transform="translate(0,40)">
-    <rect width="150" height="19"></rect>
-    <text x="147" y="9.5" dy=".35em">15</text>
-  </g>
-  <g transform="translate(0,60)">
-    <rect width="160" height="19"></rect>
-    <text x="157" y="9.5" dy=".35em">16</text>
-  </g>
-  <g transform="translate(0,80)">
-    <rect width="230" height="19"></rect>
-    <text x="227" y="9.5" dy=".35em">23</text>
-  </g>
-  <g transform="translate(0,100)">
-    <rect width="420" height="19"></rect>
-    <text x="417" y="9.5" dy=".35em">42</text>
-  </g>
-</svg>
+    <div class="col-md-4">
+    en SVG brut
+		<svg class="chart" width="420" height="120">
+		  <g transform="translate(0,0)">
+		    <rect width="40" height="19"></rect>
+		    <text x="37" y="9.5" dy=".35em">4</text>
+		  </g>
+		  <g transform="translate(0,20)">
+		    <rect width="80" height="19"></rect>
+		    <text x="77" y="9.5" dy=".35em">8</text>
+		  </g>
+		  <g transform="translate(0,40)">
+		    <rect width="150" height="19"></rect>
+		    <text x="147" y="9.5" dy=".35em">15</text>
+		  </g>
+		  <g transform="translate(0,60)">
+		    <rect width="160" height="19"></rect>
+		    <text x="157" y="9.5" dy=".35em">16</text>
+		  </g>
+		  <g transform="translate(0,80)">
+		    <rect width="230" height="19"></rect>
+		    <text x="227" y="9.5" dy=".35em">23</text>
+		  </g>
+		  <g transform="translate(0,100)">
+		    <rect width="50" height="19"></rect>
+		    <text x="47" y="9.5" dy=".35em">5</text>
+		  </g>
+		</svg>
+	</div>
 
-	<svg class="barChart" id="svgBarChart"></svg>
-        </div>
+    <div class="col-md-4">
+    avec D3 et SVG
+	<svg class="barChart chart" id="svgBarChart"></svg>
+	</div>
+
+	</div>
+      </div>
       </div>
     </div>
+
     <script>
-   	var data = [4, 8, 15, 16, 23, 42];
+   	var data = [4, 23, 15, 16, 23, 42];
 
 	d3.select("#barChart")
 	.selectAll("div")
@@ -149,7 +160,7 @@
 	.text(function(d){return d;})
 	.classed("bar", true)
 	.style("width","500px")
-	.style("width", function(d){return 10 * d + "px";});
+	.style("width", function(d){return 7 * d + "px";});
 
 	chart = d3.select("#svgBarChart");
 	chart.attr("width","500px")
@@ -157,9 +168,17 @@
 
 	var bar = chart.selectAll("g")
 	.data(data).enter().append("g")
-	.attr("transform", function(d, i){return "translate(0,"+i*30 + ")";});
+	.attr("transform", function(d, i){return "translate(0,"+i*20 + ")";});
 
+	bar.append("rect")
+	.attr("width", function(d){return 7*d;})
+	.attr("height","19");
 
+	bar.append("text")
+	.attr("x",function(d){return d-3;})
+	.attr("y","9,5")
+	.attr("dy", ".35em")
+	.text(function(d){return d;});
     </script>
 
     <!-- Bootstrap core JavaScript
