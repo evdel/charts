@@ -1,5 +1,7 @@
 var data = [4, 23, 15, 16, 23, 42];
 
+//
+
 d3.select("#barChart")
 .selectAll("div")
 .data(data)

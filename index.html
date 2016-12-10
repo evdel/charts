@@ -146,40 +146,23 @@
 	</div>
 
 	</div>
+	<div class="row">
+	<div class="col-md-4">
+		Temperature moyenne a Champs au cours des derniers mois
+		<svg class="chart" id="verticalSvgBarChart"></svg>
+	</div>
+	<div class="col-md-4">
+		Donut
+		<svg class="chart" id="donutChart"></svg>
+	</div>
+    <div class="col-md-4">
+    Disque svg
+    <svg class="chart" id="disque"></svg>
+  </div>
+	</div>
       </div>
       </div>
     </div>
-
-    <script>
-   	var data = [4, 23, 15, 16, 23, 42];
-
-	d3.select("#barChart")
-	.selectAll("div")
-	.data(data)
-	.enter().append("div")
-	.text(function(d){return d;})
-	.classed("bar", true)
-	.style("width","500px")
-	.style("width", function(d){return 7 * d + "px";});
-
-	chart = d3.select("#svgBarChart");
-	chart.attr("width","500px")
-	.attr("height", 30*data.length + "px");
-
-	var bar = chart.selectAll("g")
-	.data(data).enter().append("g")
-	.attr("transform", function(d, i){return "translate(0,"+i*20 + ")";});
-
-	bar.append("rect")
-	.attr("width", function(d){return 7*d;})
-	.attr("height","19");
-
-	bar.append("text")
-	.attr("x",function(d){return d-3;})
-	.attr("y","9,5")
-	.attr("dy", ".35em")
-	.text(function(d){return d;});
-    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -192,5 +175,6 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="Dashboard%20Template%20for%20Bootstrap_fichiers/ie10-viewport-bug-workaround.js"></script>
   
+    <script src="display_graphs.js"></script>
 
 </body></html>
