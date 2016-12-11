@@ -32,6 +32,8 @@ bar.append("text")
 
 // Barres verticales
 
+data = [4, 23, 15, 16, 23, 42, 15, 18];
+
 // - paramétrage
 
 var chartHeight = 200;
