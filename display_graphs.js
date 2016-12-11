@@ -35,8 +35,8 @@ bar.append("text")
 // - paramétrage
 
 var chartHeight = 200;
-var chartWidth = 300;
-var yAxisThickness = 20;
+var chartWidth = 400;
+var yAxisThickness = 40;
 var xAxisThickness = yAxisThickness;
 
 // - variables utilitaires
@@ -49,33 +49,47 @@ var x = d3.scaleLinear()
 	.domain([0, d3.max(data)])
 	.range([0, chartHeight]);
 
+var y = d3.scaleLinear()
+	.domain([0, d3.max(data)])
+	.range([0, innerChartHeight]);
+
+var invertedY = d3.scaleLinear()
+	.domain([0, d3.max(data)])
+	.range([innerChartHeight, 0]);
+
 var svg = d3.select("#verticalSvgBarChart")
-.attr("height",chartHeight)
-.attr("width", chartWidth);
+	.attr("height",chartHeight)
+	.attr("width", chartWidth);
 
-var g = svg.selectAll("g")
-	.data(data)
-	.enter().append("g")
-	.attr("transform", function(d, i){return "translate("+i*deltaX + ","+x(d3.max(data)-d)+")";});
-
-g.append("rect")
-.attr("width", deltaX -1)
-.attr("height", function(d){return x(d);});
-
-g.append("text");
- 
 // - Ajout axes
 
-var yAxis = d3.axisLeft(x);
+var yAxis = d3.axisLeft(invertedY);
 
 d3.select("#verticalSvgBarChart").append("svg")
     .attr("class", "axis")
-    .attr("width", 200)
-    .attr("height", 200)
+    .attr("width", yAxisThickness)
+    .attr("height", innerChartHeight)
   .append("g")
     .attr("transform", "translate(30,0)")
     .call(yAxis);
 
+// - Ajout carrés
+
+var g = svg.append("svg")
+	.attr("width", innerChartWidth)
+	.attr("height", innerChartHeight)
+	.attr("transform", "translate("+yAxisThickness+",0)")
+	.selectAll("g")
+	.data(data)
+	.enter().append("g")
+	.attr("transform", function(d, i){return "translate("+i*deltaX + ","+y(d3.max(data)-d)+")";});
+
+g.append("rect")
+.attr("width", deltaX -1)
+.attr("height", function(d){return y(d);});
+
+g.append("text");
+ 
 // Disque
 
 d3.select("#disque")
