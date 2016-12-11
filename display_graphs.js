@@ -45,9 +45,10 @@ var innerChartHeight = chartHeight - yAxisThickness;
 var innerChartWidth = chartWidth - xAxisThickness;
 var deltaX = innerChartWidth / data.length;
 
-var x = d3.scaleLinear()
-	.domain([0, d3.max(data)])
-	.range([0, chartHeight]);
+// - Echelles
+
+var x = d3.scaleOrdinal(['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin'])
+	.domain(data);
 
 var y = d3.scaleLinear()
 	.domain([0, d3.max(data)])
