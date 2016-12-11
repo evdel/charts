@@ -32,10 +32,18 @@ bar.append("text")
 
 // Barres verticales
 
+// - paramétrage
+
 var chartHeight = 200;
 var chartWidth = 300;
+var yAxisThickness = 20;
+var xAxisThickness = yAxisThickness;
 
-var deltaX = chartWidth / data.length;
+// - variables utilitaires
+
+var innerChartHeight = chartHeight - yAxisThickness;
+var innerChartWidth = chartWidth - xAxisThickness;
+var deltaX = innerChartWidth / data.length;
 
 var x = d3.scaleLinear()
 	.domain([0, d3.max(data)])
@@ -58,6 +66,15 @@ g.append("text");
  
 // - Ajout axes
 
+var yAxis = d3.axisLeft(x);
+
+d3.select("#verticalSvgBarChart").append("svg")
+    .attr("class", "axis")
+    .attr("width", 200)
+    .attr("height", 200)
+  .append("g")
+    .attr("transform", "translate(30,0)")
+    .call(yAxis);
 
 // Disque
 

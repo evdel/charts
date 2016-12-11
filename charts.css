@@ -14,3 +14,7 @@
   font: 10px sans-serif;
   text-anchor: end;
 }
+
+#verticalSvgBarChart text {
+	fill: black;
+}
