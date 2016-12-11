@@ -9,6 +9,10 @@
   fill: steelblue;
 }
 
+.chart rect:hover{
+	fill: #316189;
+}
+
 .chart text {
   fill: white;
   font: 10px sans-serif;
