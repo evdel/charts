@@ -50,6 +50,12 @@ var deltaX = innerChartWidth / data.length;
 var x = d3.scaleOrdinal(['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin'])
 	.domain(data);
 
+var xBandScale = d3.scaleBand()
+	.domain(data)
+	.range([0, innerChartWidth])
+	.paddingInner(0.3)
+	.paddingOuter(0.5);
+
 var y = d3.scaleLinear()
 	.domain([0, d3.max(data)])
 	.range([0, innerChartHeight]);
@@ -83,10 +89,10 @@ var g = svg.append("svg")
 	.selectAll("g")
 	.data(data)
 	.enter().append("g")
-	.attr("transform", function(d, i){return "translate("+i*deltaX + ","+y(d3.max(data)-d)+")";});
+	.attr("transform", function(d, i){return "translate("+xBandScale(d) + ","+y(d3.max(data)-d)+")";});
 
 g.append("rect")
-.attr("width", deltaX -1)
+.attr("width", xBandScale.bandwidth())
 .attr("height", function(d){return y(d);});
 
 g.append("text");
