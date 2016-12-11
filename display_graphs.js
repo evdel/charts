@@ -95,6 +95,7 @@ d3.select("#verticalSvgBarChart").append("svg")
 // - Ajout carrés
 
 var g = svg.append("svg")
+	.attr("class", "innerChart")
 	.attr("width", innerChartWidth)
 	.attr("height", innerChartHeight)
 	.attr("transform", "translate("+yAxisThickness+",0)")
@@ -109,7 +110,9 @@ g.append("rect")
 
 g.append("text")
 	.text(function(d){return d;})
-	.attr("x", xBandScale.bandwidth()/2)
+	.attr("class", "barText")
+	.attr("x", xBandScale.bandwidth()/2 + xBandScale.paddingInner())
+	.attr("y", function(d){return y(d) - 2;})
 	.attr("text-anchor", "middle");
  
 // Disque

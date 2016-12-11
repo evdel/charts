@@ -22,3 +22,8 @@
 #verticalSvgBarChart text {
 	fill: black;
 }
+
+#verticalSvgBarChart .innerChart .barText {
+	fill: white;
+	display: none;
+}
