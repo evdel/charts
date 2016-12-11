@@ -72,6 +72,16 @@ var svg = d3.select("#verticalSvgBarChart")
 
 // - Ajout axes
 
+var xAxis = d3.axisBottom(xBandScale);
+
+d3.select("#verticalSvgBarChart")
+	.append("g")
+		.attr("class", "axis")
+		.attr("width", innerChartWidth)
+		.attr("height", xAxisThickness)
+		.attr("transform", "translate(" + yAxisThickness + ", " + innerChartHeight + ")")
+		.call(xAxis);
+
 var yAxis = d3.axisLeft(invertedY);
 
 d3.select("#verticalSvgBarChart").append("svg")
@@ -97,7 +107,10 @@ g.append("rect")
 .attr("width", xBandScale.bandwidth())
 .attr("height", function(d){return y(d);});
 
-g.append("text");
+g.append("text")
+	.text(function(d){return d;})
+	.attr("x", xBandScale.bandwidth()/2)
+	.attr("text-anchor", "middle");
  
 // Disque
 
