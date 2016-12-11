@@ -87,7 +87,7 @@ var yAxis = d3.axisLeft(invertedY);
 d3.select("#verticalSvgBarChart").append("svg")
     .attr("class", "axis")
     .attr("width", yAxisThickness)
-    .attr("height", innerChartHeight)
+    .attr("height", chartHeight)
   .append("g")
     .attr("transform", "translate(30,0)")
     .call(yAxis);
